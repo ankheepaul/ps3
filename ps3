@@ -1,1 +1,27 @@
+library(janitor)
+library(tidyverse)
+
+# read the cleaned data
+cleaned_data <- read_csv("gss.csv")
+
+## age ditribution 
+cleaned_data%>%
+  ggplot(aes(x=age))+geom_bar(colour="blue")+scale_x_binned(name="age")+
+  labs(y="Number of people",title="Grap1: Age distribution among respondents",
+       caption= "Source:Statistics Canada. (2017). General social survey (GSS)")+theme_bw()
+
+# Total children distribution
+cleaned_data%>%
+  ggplot(aes(x=total_children))+geom_bar(colour="blue")+scale_x_binned(name="Total children")+
+  labs(y="Number of people",title="Grap1: Total children distribution among respondents",
+       caption= "Source:Statistics Canada. (2017). General social survey (GSS)")+theme_linedraw
+
+
+# income distribution
+cleaned_data%>%group_by(income_respondent)%>%
+  summarise('number'=n(),"percentage"=n()/nrow(cleaned_data))
+
+# education distribution
+cleaned_data%>%group_by(education)%>%
+  summarise('number'=n(),"percentage"=n()/nrow(cleaned_data))
 
