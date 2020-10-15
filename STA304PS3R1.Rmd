@@ -1,0 +1,36 @@
+---
+title: "STA304PS3-Model"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(dplyr)
+library(MASS)
+```
+
+## Model
+
+```{r}
+gss <- read_csv("gss.csv")
+gss_t <- gss
+gss_t1 <- gss_t %>%
+  select(total_children, age,
+         income_respondent, education)
+
+gss_clean <- gss_t1 %>% na.omit()
+head(gss_clean)
+```
+
+```{r}
+negbinmodel <- glm.nb(total_children ~ age + 
+                        as.factor(education) + 
+                        as.factor(income_respondent), 
+                      data = gss_test2)
+summary(negbinmodel)
+```
+
