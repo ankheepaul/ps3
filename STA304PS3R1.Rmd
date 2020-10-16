@@ -1,5 +1,5 @@
 ---
-title: "STA304PS3-Model"
+title: "STA304PS3-ModelCoding"
 output: pdf_document
 ---
 
@@ -8,29 +8,53 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
+# Load Required Packages, Install if needed
 library(tidyverse)
 library(dplyr)
 library(MASS)
+library(survey)
+library(jtools)
+library(broom.mixed)
+library(ggstance)
 ```
+
+```{r}
+# Call Dataset
+gss <- read_csv("gss.csv")
+```
+
 
 ## Model
 
 ```{r}
-gss <- read_csv("gss.csv")
-gss_t <- gss
-gss_t1 <- gss_t %>%
-  select(total_children, age,
+# Selecting chosen variables and filtering out NA responses
+gss_t <- gss %>%
+  dplyr::select(total_children, age,
          income_respondent, education)
 
-gss_clean <- gss_t1 %>% na.omit()
+gss_clean <- gss_t %>% na.omit()
 head(gss_clean)
 ```
 
 ```{r}
-negbinmodel <- glm.nb(total_children ~ age + 
+# First Design of GLM Regression Model
+gss_glm <- glm.nb(total_children ~ age + 
                         as.factor(education) + 
                         as.factor(income_respondent), 
-                      data = gss_test2)
-summary(negbinmodel)
+                      data = gss_clean)
 ```
 
+```{r}
+# Display Summary Statistics of Model
+summary(gss_glm)
+```
+
+```{r}
+# Slightly cleaner looking display of summary statistics
+summ(gss_glm, vifs = TRUE, digits = 5)
+```
+
+```{r}
+# Plot displaying estimated coefficient values + their respective standard deviation
+plot_summs(gss_glm, scale= FALSE)
+```
