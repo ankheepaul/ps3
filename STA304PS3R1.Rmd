@@ -29,11 +29,20 @@ gss <- read_csv("gss.csv")
 ```{r}
 # Selecting chosen variables and filtering out NA responses
 gss_t <- gss %>%
-  dplyr::select(total_children, age,
+  dplyr::select(caseid,total_children, age,
          income_respondent, education)
 
 gss_clean <- gss_t %>% na.omit()
 head(gss_clean)
+
+# pulling a random sample of 4000 observations from our 
+# main dataset to use later for model validation
+set.seed(140)
+gss_sample <- sample_n(gss_clean, 4000)
+
+# we will be taking the 4000 observation sample out of the datset
+# and use the remaining data for model development 
+gss_clean1 <- gss_clean %>% anti_join(gss_sample)
 ```
 
 ```{r}
@@ -41,7 +50,7 @@ head(gss_clean)
 gss_glm <- glm.nb(total_children ~ age + 
                         as.factor(education) + 
                         as.factor(income_respondent), 
-                      data = gss_clean)
+                      data = gss_clean1)
 ```
 
 ```{r}
@@ -62,17 +71,15 @@ plot_summs(gss_glm, scale= FALSE)
 ```{r}
 #Model validation, comparing MSPE and MSres
 
-#pulling a random sample of 400 observations from our main dataset 
-set.seed(156)
-gss_sample <- sample_n(gss_clean, 4000)
-gss_sample
 # fitting sample dataset to our model
 gss_sample_glm <- glm.nb(total_children ~ age + 
                         as.factor(education) + 
                         as.factor(income_respondent),  
                       data = gss_sample)
+                      
 #calculation of the mspe for smaple dataset
 mspe = sum(resid(gss_sample_glm)^2)/ length(gss_sample$total_children)
+
 #calculation of the MSres for our main dataset
-msres = sum(resid(gss_glm)^2)/(length(gss_clean$total_children) - 13) 
+msres = sum(resid(gss_glm)^2)/(length(gss_clean1$total_children) - 13) 
 ```
