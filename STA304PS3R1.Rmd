@@ -60,7 +60,7 @@ summary(gss_glm)
 
 ```{r}
 # Slightly cleaner looking display of summary statistics
-summ(gss_glm, vifs = TRUE, digits = 5)
+summ(gss_glm, vifs = TRUE, digits = 5, model.fit = FALSE)
 ```
 
 ```{r}
