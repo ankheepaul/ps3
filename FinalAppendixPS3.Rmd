@@ -5,6 +5,8 @@ date: "10/19/2020"
 output: pdf_document
 ---
 
+This code collects and filters data from the GSS 2017 study and analyzes the relationship between the variables total_children, and; age, income_respondent, and education. We use a variety of methods to both validate and display the results of our model.
+
 ```{r, include = FALSE}
 # Load Required Packages, use install.packages() if needed
 library(tidyverse)

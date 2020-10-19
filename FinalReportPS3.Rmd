@@ -253,7 +253,7 @@ Further work can be carried out wherein more predictor variables are selected fo
 
 ## Appendix
 
-Code for this study can be found at: https://github.com/ankheepaul/ps3/blob/main/STA304PS3CodeAppendix.Rmd 
+Code for this study can be found at: https://github.com/ankheepaul/ps3/blob/main/FinalAppendixPS3.Rmd 
 
 ## References
 
@@ -288,7 +288,7 @@ R Core Team (2020). R: A language and environment for statistical
  	 computing. R Foundation for Statistical Computing, Vienna, Austria.
   	URL https://www.R-project.org/.
 
-Rohan Alexander (2020).GSS_cleaning
+Rohan Alexander (2020). GSS_cleaning dataset
 
 Sachin. (2020, May 10). Generalized Linear Models. https://towardsdatascience.com/generalized-linear-models-9ec4dfe3dc3f  
 
@@ -303,7 +303,7 @@ samples". R package version 4.0.
   Statistics with S. Fourth Edition. Springer, New York. ISBN
   0-387-95457-0
 
-     -   Wickham et al., (2019). Welcome to the tidyverse. Journal of Open
+   Wickham et al., (2019). Welcome to the tidyverse. Journal of Open
   Source Software, 4(43), 1686, https://doi.org/10.21105/joss.01686
 
 
