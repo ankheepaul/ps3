@@ -1,5 +1,5 @@
 ---
-title: "Socioeconomic Determinants of Total Children in a Family"
+title: "Socioeconomic Determinants of Total Children in Canadian Families"
 author: "Kashaun Eghdam, Ankhee Paul, Timothy Regis, Chen Shupeng"
 date: "10/19/2020"
 output: pdf_document
